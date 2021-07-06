@@ -2,7 +2,7 @@
 The project is created using React alone with `react-bootstrap` and `react-icons`.
 
 ### Link
-### Open [https://ahtasham637.github.io/realtime-resume-builder/](http://localhost:3001) to view the demo.
+### Open [https://ahtasham637.github.io/realtime-resume-builder/](https://ahtasham637.github.io/realtime-resume-builder/) to view the demo.
 
 ## Running locally
 ### `Clone the repo`
