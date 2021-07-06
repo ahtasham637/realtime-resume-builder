@@ -36,7 +36,7 @@ function Education() {
     }
 
     return (
-        <Row>
+        <Row className="pagebreak">
           <Col>
             <Row>
               <Col>

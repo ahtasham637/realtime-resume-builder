@@ -38,38 +38,38 @@ function Home({id, innerRef}) {
                     </Row>
                     <br />
                     <br />
-                    <Row>
+                    <Row className="pagebreak">
                         <Col>
                             <Education />
                         </Col>
                     </Row>
                 </Col>
                 <Col sm={5}>
-                    <Row>
+                    <Row className="pagebreak">
                         <Col>
                             <Skills />
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="pagebreak">
                         <Col>
                             <Portfolio />
                         </Col>
                     </Row>
                     <br />
                     <br />
-                    <Row>
+                    <Row className="pagebreak">
                         <Col>
                             <Languages />
                         </Col>
                     </Row>
                     <br />
                     <br />
-                    <Row>
+                    <Row className="pagebreak">
                         <Col>
                             <Interests />
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="pagebreak">
                         <Col>
                             <Social />
                         </Col>
