@@ -1,0 +1,11 @@
+.link, .link:focus, .link:active, .link:hover, .link:visited
+{
+    color: rgb(41 129 151);
+}
+
+.input__link
+
+{
+    display: inline-block;
+    font-weight: 600;
+}

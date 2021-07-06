@@ -1,0 +1,52 @@
+.transparent__input, .transparent__input:active, .transparent__input:hover, .transparent__input:focus
+{
+    background: rgb(255 255 255 / 0%);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #51c59f;
+    border-radius: 0px;
+    margin-bottom: 5px;
+}
+
+.remover-x
+{
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    color: #a8a8a8;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.pen-btn, .remover-times
+{
+    color: inherit;
+    opacity: 0.3;
+}
+
+.adder-plus
+{
+    opacity: 0.7;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+  }
+
+@media print
+{
+    html, body {
+        width: 210mm;
+        height: 297mm;
+    }
+    
+
+    #printBtn, .remover-x, .adder-plus, .remover-times, .pen-btn
+    {
+        display: none !important;
+    }
+
+    .pagebreak { page-break-inside: avoid; padding-top: 15px; }
+}

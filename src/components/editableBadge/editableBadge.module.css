@@ -1,0 +1,31 @@
+.badge
+{
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 9px;
+    color: #333;
+    font-weight: 700;
+    background-color: rgb(125 132 145 / 12%) !important;
+    border: 2px solid #2d9e89 !important;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.skills__input
+{
+    font-weight: 600;
+    display: inline-block;
+}
+
+.input__control__class, input__control__class:focus, input__control__class:hover
+{
+    margin: 0;
+    padding: 0;
+    height: 24px;
+    margin-bottom: 0px !important;
+}
+
+.warning
+{
+    background-color: red;
+}

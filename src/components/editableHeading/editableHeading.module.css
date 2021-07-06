@@ -1,0 +1,17 @@
+.heading__div
+{
+    white-space: nowrap;
+    font-size: 23px;
+    font-weight: 700;
+    display: inline-block;
+    
+}
+
+.text
+{
+    position: relative;
+    top:2px;
+    text-transform: capitalize;
+    padding-bottom: 10px;
+    border-bottom: 4px solid #2ca67e;
+} 

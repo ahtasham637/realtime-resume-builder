@@ -1,0 +1,38 @@
+.cover
+{
+    background-color: #313c4e;
+    color: #fff;
+    min-height: 180px;
+    height: auto;
+    padding-top: 42px;
+    padding-bottom: 15px;
+}
+
+.content
+{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.right
+{
+    float: right;
+    text-align: right;
+}
+
+.full__name
+{
+    font-size: 1.75rem;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.profession
+{
+    font-size: 1.15rem;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #51c59f;
+}

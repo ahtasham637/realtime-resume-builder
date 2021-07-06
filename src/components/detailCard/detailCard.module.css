@@ -1,0 +1,85 @@
+.title
+{
+    color: #000;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.sub__title
+{
+    color: #585858;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.dateBox
+{
+    color: #2ca67e;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 13px;
+    /* width: 85px !important; */
+}
+
+.checkbox
+{
+    color: #5c5c5c;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.location
+{
+    color: #2ca67e;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.description
+{
+    font-weight: 600;
+    font-size: 13px;
+    color: #7d7d7d;
+}
+
+.list__heading
+{
+    font-weight: 600;
+    font-size: 14px;
+    color: #538f7c;
+}
+
+.list__ul li::marker
+{
+  color: #538f7c;
+  font-size: 15px;
+}
+.list__ul li
+{
+    color: #333 !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    margin-left: -15px;
+}
+
+.link__div{
+    display: inline-block;
+}
+
+.link__text
+{
+    position: relative;
+    top:2px;
+    font-size: 15px;
+    font-weight: 600;
+    -ms-word-break: break-all;
+     word-break: break-all;
+
+     /* Non standard for webkit */
+     word-break: break-word;
+
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+        hyphens: auto;
+}

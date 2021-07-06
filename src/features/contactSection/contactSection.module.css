@@ -1,0 +1,33 @@
+.section
+{
+    background-color: #192431;
+    color: #fff;
+    min-height: 50px;
+    height: auto;
+    padding-top:10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.info__div
+{
+    white-space: nowrap;
+}
+
+.text
+{
+    position: relative;
+    top:2px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.input__text
+{
+    display: inline-block;
+}
+
+.link, .link:focus, .link:active, .link:hover, .link:visited
+{
+    color: #fff;
+}
