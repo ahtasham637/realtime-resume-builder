@@ -1,4 +1,5 @@
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -10,22 +11,11 @@ import EditableText from '../../components/editableText/EditableText';
 import CustomImage from '../../components/customImage/CustomImage';
 
 function Cover() {
-    const [fullName, setFullName] = useState('');
-    const [profession, setProfession] = useState('');
-    const [summary, setSummary] = useState('');
-    const [image, setImage] = useState('');
+    const [fullName, setFullName] = useLocalStorage('FULL_NAME','');
+    const [profession, setProfession] = useLocalStorage('PROFESSION', '');
+    const [summary, setSummary] = useLocalStorage('SUMMARY', '');
+    const [image, setImage] = useLocalStorage('IMAGE', '');
 
-
-    useEffect(() => {
-        if(fullName)
-        {
-            window.onbeforeunload = confirmExit;
-            function confirmExit()
-            {
-                return "show warning";
-            }
-        }
-    }, [fullName])
 
     const getWhoAreYou = () => 
     {

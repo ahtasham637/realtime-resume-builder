@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
+
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,17 +9,18 @@ import EditbaleHeading from '../../components/editableHeading/EditbaleHeading';
 import DetailCard from '../../components/detailCard/DetailCard';
 import ElementRemover from '../../components/elementRemover/ElementRemover';
 import ElementAdder from '../../components/ElementAdder/ElementAdder';
+import uuid from '../../helpers/uuid';
 
 
 function Social() {
-    const [socialHeading, setSocialHeading] = useState('SOCIAL');
-    const [detailCards, setDetailCards] = useState([]);
-    const [showSocialRow, setShowSocialRow] = useState(true);
+    const [socialHeading, setSocialHeading] = useLocalStorage('SOCIAL_TITLE', 'SOCIAL');
+    const [detailCards, setDetailCards] = useLocalStorage('social', []);
+    const [showSocialRow, setShowSocialRow] = useLocalStorage('show_social', true);
 
-    const addDetailCard = e =>
+    const addDetailCard = () =>
     {
       let newArr = [...detailCards];
-      newArr.push({type: "portfolio"});
+      newArr.push({type: "socials", idx: uuid()});
 
       setDetailCards(newArr);
     }
@@ -28,7 +30,7 @@ function Social() {
     {
       return (<Col className="pagebreak" key={index} md={12} style={{marginTop: '15px'}}>
         <ElementRemover index={index} elementArr={detailCards} setElementArr={setDetailCards} />
-        <DetailCard type={type} />
+        <DetailCard type={type} idx={index} />
       </Col>)
     }
 
@@ -55,8 +57,8 @@ function Social() {
             </Row>
             <br />
             <Row>
-                {detailCards.map((detailCard, index) => {
-                  return getCard(detailCard.type, index)
+                {detailCards.map((detailCard) => {
+                  return getCard(detailCard.type, detailCard.idx)
                 })}
             </Row>
           </Col>

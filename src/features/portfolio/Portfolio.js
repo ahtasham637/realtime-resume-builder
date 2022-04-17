@@ -1,5 +1,6 @@
 
-import { useState } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
+
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,17 +10,18 @@ import EditbaleHeading from '../../components/editableHeading/EditbaleHeading';
 import DetailCard from '../../components/detailCard/DetailCard';
 import ElementRemover from '../../components/elementRemover/ElementRemover';
 import ElementAdder from '../../components/ElementAdder/ElementAdder';
+import uuid from '../../helpers/uuid';
 
 function Portfolio() {
 
-    const [portfolioHeading, setPortfolioHeading] = useState('PORTFOLIO');
-    const [detailCards, setDetailCards] = useState([]);
-    const [showPortfolioRow, setShowPortfolioRow] = useState(true);
+    const [portfolioHeading, setPortfolioHeading] = useLocalStorage('PORTFOLIO_TITLE', 'PORTFOLIO');
+    const [detailCards, setDetailCards] = useLocalStorage('portfolio', []);
+    const [showPortfolioRow, setShowPortfolioRow] = useLocalStorage('show_portfolio', true);
 
     const addDetailCard = e =>
     {
       let newArr = [...detailCards];
-      newArr.push({type: "portfolio"});
+      newArr.push({type: "portfolio", idx: uuid()});
 
       setDetailCards(newArr);
     }
@@ -29,7 +31,7 @@ function Portfolio() {
     {
       return (<Col className="pagebreak" key={index} md={12} style={{marginTop: '15px'}}>
         <ElementRemover index={index} elementArr={detailCards} setElementArr={setDetailCards} />
-        <DetailCard type={type} />
+        <DetailCard type={type} idx={index} />
       </Col>)
     }
 
@@ -56,8 +58,8 @@ function Portfolio() {
             </Row>
             <br />
             <Row>
-                {detailCards.map((detailCard, index) => {
-                  return getCard(detailCard.type, index)
+                {detailCards.map((detailCard) => {
+                  return getCard(detailCard.type, detailCard.idx)
                 })}
             </Row>
           </Col>

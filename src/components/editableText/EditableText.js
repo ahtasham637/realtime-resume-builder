@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import FormControl from 'react-bootstrap/FormControl';
 import {FaPen, FaCheckCircle} from 'react-icons/fa';
 
 import styles from './editableText.module.css';
 
-function EditableText({text, placeHolder, inputClass, setText, inputTextColor = '#fff', controlType="input", inputType="text", min="", max="", inputWidth="80%", spanStyle, controlClass, dropDownData}) {
-    const [showInput, setShowInput] = useState(false);
-    const [showPen, setShowPen] = useState(true);
-    const [innerText, setInnerText] = useState(text);
+function EditableText({idx, text, placeHolder, inputClass, setText, inputTextColor = '#fff', controlType="input", inputType="text", min="", max="", inputWidth="80%", spanStyle, controlClass, dropDownData}) {
+    const [showInput, setShowInput] = useLocalStorage(`${placeHolder}_${idx}_showInput`, false);
+    const [showPen, setShowPen] = useLocalStorage(`${placeHolder}_${idx}_showPen`, true);
+    const [innerText, setInnerText] = useLocalStorage(`${placeHolder}_${idx}_innerText`, text);
 
     const startEditing = e =>
     {

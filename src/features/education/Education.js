@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,21 +7,22 @@ import EditbaleHeading from '../../components/editableHeading/EditbaleHeading';
 import DetailCard from './../../components/detailCard/DetailCard';
 import ElementRemover from '../../components/elementRemover/ElementRemover';
 import ElementAdder from '../../components/ElementAdder/ElementAdder';
+import uuid from '../../helpers/uuid'
 
 
 //helper
 
 
 function Education() {
-    const [educationHeading, setEducationHeading] = useState('EDUCATION');
-    const [detailCards, setDetailCards] = useState([]);
+    const [educationHeading, setEducationHeading] = useLocalStorage('EDUCATION_TITLE', 'EDUCATION');
+    const [detailCards, setDetailCards] = useLocalStorage('education', []);
 
     const addDetailCard = e =>
     {
-      let newArr = [...detailCards];
-      newArr.push({type: "education"});
+      let newCard = [...detailCards];
+      newCard.unshift({type: "education", idx: uuid()});
 
-      setDetailCards(newArr);
+      setDetailCards(newCard);
     }
 
 
@@ -30,7 +31,7 @@ function Education() {
       return (<Row key={index} className="pagebreak">
         <Col>
           <ElementRemover index={index} elementArr={detailCards} setElementArr={setDetailCards} />
-          <DetailCard type={type}  />
+          <DetailCard type={type} idx={index} />
         </Col>
       </Row>)
     }
@@ -47,8 +48,8 @@ function Education() {
             <br />
             <Row>
               <Col>
-                {detailCards.map((detailCard, index) => {
-                  return getCard(detailCard.type, index)
+                {detailCards.map((detailCard) => {
+                  return getCard(detailCard.type, detailCard.idx)
                 })}
               </Col>
             </Row>

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
+
 import {FaEnvelope, FaMobileAlt, FaMapMarkerAlt} from 'react-icons/fa';
 
 import Row from 'react-bootstrap/Row';
@@ -13,9 +14,9 @@ import handleLinkClick from '../../helpers/handleLinkClick';
 
 function ContactSection() {
 
-    const [email, setEmail] = useState('');
-    const [mobile, setMobile] = useState('');
-    const [location, setLocation] = useState('');
+    const [email, setEmail] = useLocalStorage("EMAIL", '');
+    const [mobile, setMobile] = useLocalStorage('MOBILE', '');
+    const [location, setLocation] = useLocalStorage('LOCATION', '');
 
     return (
         <Row className={styles.section}>

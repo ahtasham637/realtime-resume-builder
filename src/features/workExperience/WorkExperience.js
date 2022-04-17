@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,18 +8,18 @@ import EditbaleHeading from '../../components/editableHeading/EditbaleHeading';
 import DetailCard from './../../components/detailCard/DetailCard';
 import ElementRemover from '../../components/elementRemover/ElementRemover';
 import ElementAdder from '../../components/ElementAdder/ElementAdder';
+import uuid from '../../helpers/uuid'
 
 function WorkExperience() {
 
-    const [workExperience, setWorkExperience] = useState('WORK EXPERIENCE');
-    const [detailCards, setDetailCards] = useState([]);
+    const [workExperience, setWorkExperience] = useLocalStorage('WORK_EXPERIENCE_TITLE', 'WORK EXPERIENCE');
+    const [detailCards, setDetailCards] = useLocalStorage('work_experience', []);
 
-    const addDetailCard = e =>
+    const addDetailCard = () =>
     {
-      let newArr = [...detailCards];
-      newArr.push({type: "work"});
-
-      setDetailCards(newArr);
+      const newCard = [...detailCards];
+      newCard.unshift({type: "work", idx: uuid()})
+      setDetailCards(newCard);
     }
 
     const getCard = (type, index) =>
@@ -27,7 +27,7 @@ function WorkExperience() {
       return (<Row key={index} className="pagebreak">
         <Col>
           <ElementRemover index={index} elementArr={detailCards} setElementArr={setDetailCards} />
-          <DetailCard type={type}  />
+          <DetailCard type={type} idx={index} />
         </Col>
       </Row>)
     }
@@ -44,8 +44,8 @@ function WorkExperience() {
             <br />
             <Row>
               <Col>
-                {detailCards.map((detailCard, index) => {
-                  return getCard(detailCard.type, index)
+                {detailCards.map((detailCard) => {
+                  return getCard(detailCard.type, detailCard.idx)
                 })}
               </Col>
             </Row>

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
+
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,15 +14,16 @@ import EditbaleHeading from '../../components/editableHeading/EditbaleHeading';
 
 //styles
 import styles from './interests.module.css';
+import uuid from '../../helpers/uuid';
 
 function Interests() {
-    const [interestsHeading, setInterestsHeading] = useState('INTERESTS');
-    const [interestsList, setInterestsList] = useState([]);
+    const [interestsHeading, setInterestsHeading] = useLocalStorage('INTERESTS_TITLE', 'INTERESTS');
+    const [interestsList, setInterestsList] = useLocalStorage('interests', []);
 
-    const addDetailCard = e =>
+    const addDetailCard = () =>
     {
       let newArr = [...interestsList];
-      newArr.push({text: ""});
+      newArr.push({text: "", idx: uuid()});
 
       setInterestsList(newArr);
     }
@@ -34,11 +36,11 @@ function Interests() {
         setInterestsList(newArr);
     }
 
-    const getBadge = (text, index) =>
+    const getBadge = (text, index, idx) =>
     {
       return (<span style={{position: 'relative'}} key={index}>
-          <EditableBadge placeholder="Interest" text={text} setText={updateSkillText(index)} badgeStyle={styles.badge} />
-          <ElementRemover index={index} elementArr={interestsList} setElementArr={setInterestsList} style={{position: "relative", right: "0px"}} />
+          <EditableBadge idx={idx} placeholder="Interest" text={text} setText={updateSkillText(index)} badgeStyle={styles.badge} />
+          <ElementRemover index={index} idx={idx} placeholder="Interest" elementArr={interestsList} setElementArr={setInterestsList} style={{position: "relative", right: "0px"}} />
         </span>)
     }
 
@@ -55,7 +57,7 @@ function Interests() {
             <Row>
               <Col>
                 {interestsList.map((skill, index) => {
-                  return getBadge(skill.text, index)
+                  return getBadge(skill.text, index, skill.idx)
                 })}
               </Col>
             </Row>

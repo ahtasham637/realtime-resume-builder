@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
+
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,15 +11,16 @@ import EditbaleHeading from '../../components/editableHeading/EditbaleHeading';
 import EditableBadge from '../../components/editableBadge/EditableBadge';
 import ElementRemover from '../../components/elementRemover/ElementRemover';
 import ElementAdder from '../../components/ElementAdder/ElementAdder';
+import uuid from '../../helpers/uuid';
 
 function Skills() {
-    const [skillsHeading, setSkillsHeading] = useState('SKILLS');
-    const [skillsList, setSkillsList] = useState([]);
+    const [skillsHeading, setSkillsHeading] = useLocalStorage('SKILLS_TITLE', 'SKILLS');
+    const [skillsList, setSkillsList] = useLocalStorage('skills', []);
 
     const addDetailCard = e =>
     {
       let newArr = [...skillsList];
-      newArr.push({text: ""});
+      newArr.push({text: "", idx: uuid()});
 
       setSkillsList(newArr);
     }
@@ -54,11 +56,11 @@ function Skills() {
     }
 
 
-    const getBadge = (text, index) =>
+    const getBadge = (text, index, idx) =>
     {
       return (<span style={{position: 'relative'}} key={index}>
-          <EditableBadge placeholder="skill" text={text} setText={updateSkillText(index)} />
-          <ElementRemover index={index} elementArr={skillsList} setElementArr={setSkillsList} style={{position: "relative", right: "0px"}} />
+          <EditableBadge idx={idx} placeholder="skill" text={text} setText={updateSkillText(index)} />
+          <ElementRemover index={index} idx={idx} placeholder="skill" elementArr={skillsList} setElementArr={setSkillsList} style={{position: "relative", right: "0px"}} />
         </span>)
     }
 
@@ -75,7 +77,7 @@ function Skills() {
             <Row>
               <Col>
                 {skillsList.map((skill, index) => {
-                  return getBadge(skill.text, index)
+                  return getBadge(skill.text, index, skill.idx)
                 })}
               </Col>
             </Row>

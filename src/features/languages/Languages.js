@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
+
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,16 +8,17 @@ import EditbaleHeading from '../../components/editableHeading/EditbaleHeading';
 import DetailCard from '../../components/detailCard/DetailCard';
 import ElementRemover from '../../components/elementRemover/ElementRemover';
 import ElementAdder from '../../components/ElementAdder/ElementAdder';
+import uuid from '../../helpers/uuid';
 
 function Languages() {
 
-    const [languageHeading, setLanguageHeading] = useState('LANGUAGES');
-    const [detailCards, setDetailCards] = useState([]);
+    const [languageHeading, setLanguageHeading] = useLocalStorage('LANGUAGES_TITLE', 'LANGUAGES');
+    const [detailCards, setDetailCards] = useLocalStorage('languages', []);
 
-    const addDetailCard = e =>
+    const addDetailCard = () =>
     {
       let newArr = [...detailCards];
-      newArr.push({type: "language"});
+      newArr.push({type: "language", idx: uuid()});
 
       setDetailCards(newArr);
     }
@@ -25,7 +27,7 @@ function Languages() {
     {
       return (<Col key={index} sm={6}>
         <ElementRemover index={index} elementArr={detailCards} setElementArr={setDetailCards} />
-        <DetailCard type={type} />
+        <DetailCard type={type} idx={index} />
         </Col>)
     }
 
@@ -40,8 +42,8 @@ function Languages() {
             </Row>
             <br />
             <Row>
-                {detailCards.map((detailCard, index) => {
-                  return getCard(detailCard.type, index)
+                {detailCards.map((detailCard) => {
+                  return getCard(detailCard.type, detailCard.idx)
                 })}
             </Row>
           </Col>

@@ -13,10 +13,13 @@ import Languages from '../../features/languages/Languages';
 import Portfolio from '../../features/portfolio/Portfolio';
 import Interests from '../../features/interests/Interests';
 import Social from '../../features/social/Social';
-import Print from '../../features/print/Print';
+import BottomButtons from '../../features/bottomButtons/bottomButtons';
 
 
 function Home({id, innerRef}) {
+    Object.keys(localStorage).forEach(key => {
+        console.log(`Key is: ${key} And value is: ${localStorage.getItem(key)}`)
+    })
     return (
         <Container fluid ref={innerRef} id={id}>
             <Row>
@@ -76,7 +79,7 @@ function Home({id, innerRef}) {
                     </Row>
                 </Col>
             </Row>
-            <Print />
+            <BottomButtons />
         </Container>
     );
 }
